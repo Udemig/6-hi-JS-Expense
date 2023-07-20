@@ -7,6 +7,11 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>Harcam Hesaplayıcı</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/512/Calculator_512.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -16,7 +21,11 @@
       <!-- karşılama metni -->
       <h3 class="greet">
         Hoşgeldin,
-        <input type="text" placeholder="isminizi giriniz.." />
+        <input
+          id="user-input"
+          type="text"
+          placeholder="isminizi giriniz.."
+        />
       </h3>
 
       <!-- form alanı -->
@@ -47,6 +56,13 @@
       <div class="sum">
         Toplam Haracama <span id="sum-info">0</span> &#x20BA;
       </div>
+
+      <!-- filtreleme alaın -->
+      <select>
+        <option value="all">Hepsi</option>
+        <option value="payed">Ödenenler</option>
+        <option value="not-payed">Ödenmeyenler</option>
+      </select>
       <!-- harcamalar listesi -->
       <div id="list"></div>
     </div>

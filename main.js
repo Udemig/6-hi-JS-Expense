@@ -6,12 +6,15 @@ const listArea = document.getElementById('list');
 const statusCheckbox = document.getElementById('status-check');
 const sumInfo = document.getElementById('sum-info');
 const deleteBtn = document.getElementById('delete');
-
-console.log(deleteBtn);
+const userInput = document.getElementById('user-input');
+const select = document.querySelector('select');
 
 //! izledeğimiz olaylar
 addBtn.addEventListener('click', addExpense);
 listArea.addEventListener('click', handleUpdate);
+userInput.addEventListener('input', saveUser);
+document.addEventListener('DOMContentLoaded', getUser);
+select.addEventListener('change', handleFilter);
 
 // toplamın değerni burada tutucaz
 let sum = 0;
@@ -76,12 +79,70 @@ function addExpense(event) {
 function handleUpdate(event) {
   // tıklanılan elemana erişme
   const ele = event.target;
+  // silme resminin kapasayıcısına eişme
+  const parent = ele.parentElement.parentElement;
 
   // yalnızca silme resmine tıklanınca çalışacak kod
   if (ele.id === 'delete') {
-    // silme resminin kapasayıcısına eişme
-    const parent = ele.parentElement.parentElement;
     // elementi silme
     parent.remove();
+
+    // toplam bilgisini güncelleme
+    const price = parent.querySelector('.price').textContent;
+    updateSum(Number(price) * -1);
   }
+
+  // tıklanılılan elemanın id'si edit ise harcamanın  payed classı varsa çıkar yoksa ekle
+  if (ele.id === 'edit') {
+    parent.classList.toggle('payed');
+  }
+}
+
+// kullanıcıyı local'a kaydetme
+function saveUser(event) {
+  localStorage.setItem('username', event.target.value);
+}
+
+// kullanıcı local'de varsa onu alma
+function getUser() {
+  // local'edn ismi al | isim yoksa null yerine "" olsun
+  const username = localStorage.getItem('username') || '';
+
+  // kullanıcı ismini inputa aktar
+  userInput.value = username;
+}
+
+// filtreleme kısmı
+function handleFilter(event) {
+  const selected = event.target.value;
+  const items = list.childNodes;
+
+  // bütün elemanları dönme
+  items.forEach((item) => {
+    // selecetd alabilceği değerleri izleme
+    switch (selected) {
+      case 'all':
+        // hepsini göster
+        item.style.display = 'flex';
+        break;
+
+      case 'payed':
+        //  elema payed class'ına sahipse onu göster değilse gizle
+        if (item.classList.contains('payed')) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+        break;
+
+      case 'not-payed':
+        //  elema payed class'ına sahip değilse onu göster değilse gizle
+        if (!item.classList.contains('payed')) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+        break;
+    }
+  });
 }

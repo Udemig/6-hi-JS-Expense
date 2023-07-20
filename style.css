@@ -104,6 +104,9 @@ button:hover {
   flex-direction: column;
   margin-top: 40px;
   gap: 30px;
+  overflow: auto;
+  padding: 10px;
+  height: 100%;
 }
 
 .expense {
@@ -153,4 +156,10 @@ button:hover {
 }
 #sum-info {
   color: yellow;
+}
+
+select {
+  width: 30%;
+  margin: 0 auto;
+  padding: 5px;
 }

@@ -10,6 +10,17 @@
 - - Js tarafından eklenen bütün harcamalrın fiyatlarını bu değişkene ekle
 - - Değişken her ghüncellendiğinde ekranı da güncelle (fonk. yazılabilir)
 
+- Silme butonuna basılma olayını izle
+- - butona tıklandığında kapsyayıcısın html'den kaldır
+- - kaldırılan harcamanın fiyatını toplamdan çıkart
+
+- kullanıcı ismini al
+- - ve ismi localstroage a kaydet
+- - kullanıcı uygulamaya girdiğinde localstroage'a ismi kaydedilmişse onu al ve inputa aktar
+
+- filtrleeme alanında ne seçilirse onun değerini al
+- - o değere göre hangi haracamların ekrana karar ver
+
 # Notlar
 
 - Hoisting
